@@ -4,8 +4,11 @@ import Pertandingan from "./components/Pertandingan";
 function App() {
   return (
     <div className="container-fluid bg-light p-4">
-      <div className="d-inline-flex">
-        <Pertandingan />
+      <div className="row">
+        <div className="col-md-6 col-sm-12">
+          <Pertandingan />
+        </div>
+        <div className="col-md-6 col-sm-12"></div>
       </div>
     </div>
   );

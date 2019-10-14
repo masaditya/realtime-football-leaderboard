@@ -7,16 +7,31 @@ export default class Pertandingan extends Component {
 
     this.state = {
       team: [
-        { nama: "barcelona" },
-        { nama: "juventus" },
-        { nama: "chelsea" },
-        { nama: "ajax" }
-      ]
+        { id: 1, nama: "barcelona" },
+        { id: 2, nama: "juventus" },
+        { id: 3, nama: "chelsea" },
+        { id: 4, nama: "ajax" }
+      ],
+      match: {
+        teamA: null,
+        teamB: null,
+        scoreA: 0,
+        scoreB: 0
+      }
     };
   }
 
-  handleTeamA = team => {
-    console.log(team);
+  handleChange = event => {
+    console.log(event.target.name);
+    let match = this.state.match;
+    match[event.target.name] = event.target.value;
+    console.log(match);
+    this.setState({ match });
+  };
+
+  handleSubmit = async event => {
+    event.preventDefault();
+    console.log(this.state.match);
   };
 
   render() {
@@ -24,7 +39,8 @@ export default class Pertandingan extends Component {
       <div>
         <PertandinganView
           team={this.state.team}
-          handleTeamA={this.handleTeamA}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
         />
       </div>
     );
