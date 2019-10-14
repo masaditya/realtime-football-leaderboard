@@ -4,8 +4,8 @@ const PertandinganView = ({ team, handleChange, handleSubmit }) => {
   return (
     <div className="container text-center">
       <form onSubmit={handleSubmit}>
-        <div className="row">
-          <div className="col-md-6">
+        <div className="row ">
+          <div className="col-md-5 ">
             <select
               className="custom-select"
               name="teamA"
@@ -20,14 +20,16 @@ const PertandinganView = ({ team, handleChange, handleSubmit }) => {
               })}
             </select>
             <input
+
               placeholder="score"
-              className="form-control my-2 w-50"
+              className="form-control mx-auto my-2 w-50"
               type="number"
               name="scoreA"
               onChange={handleChange}
             />
           </div>
-          <div className="col-md-6">
+          <b className="m-auto">VS</b>
+          <div className="col-md-5">
             <select
               className="custom-select"
               name="teamB"
@@ -43,7 +45,7 @@ const PertandinganView = ({ team, handleChange, handleSubmit }) => {
             </select>
             <input
               placeholder="score"
-              className="form-control my-2 w-50"
+              className="form-control mx-auto my-2 w-50"
               type="number"
               name="scoreB"
               onChange={handleChange}

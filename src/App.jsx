@@ -1,5 +1,6 @@
 import React from "react";
 import Pertandingan from "./components/Pertandingan";
+import Klasemen from "./components/Klasemen";
 
 function App() {
   return (
@@ -8,7 +9,9 @@ function App() {
         <div className="col-md-6 col-sm-12">
           <Pertandingan />
         </div>
-        <div className="col-md-6 col-sm-12"></div>
+        <div className="col-md-6 col-sm-12">
+          <Klasemen />
+        </div>
       </div>
     </div>
   );

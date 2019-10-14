@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import KlasemenTable from "./KlasemenTable";
 
 export default class Klasemen extends Component {
   constructor() {
@@ -6,6 +7,10 @@ export default class Klasemen extends Component {
     this.state = {};
   }
   render() {
-    return <div></div>;
+    return (
+      <div>
+        <KlasemenTable />
+      </div>
+    );
   }
 }
