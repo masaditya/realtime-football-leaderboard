@@ -24,7 +24,7 @@ export default class Pertandingan extends Component {
     };
     
   }
-  socket = socketIOClient("http://localhost:4000");
+  // socket = socketIOClient("http://localhost:4000");
 
   UNSAFE_componentWillMount() {
     
