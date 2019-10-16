@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import PertandinganView from "./view";
+import socketIOClient from "socket.io-client";
+import axios from "axios";
 
 export default class Pertandingan extends Component {
   constructor() {
@@ -17,9 +19,26 @@ export default class Pertandingan extends Component {
         teamB: null,
         scoreA: 0,
         scoreB: 0
-      }
+      },
+      url : ""
     };
+    
   }
+  // socket = socketIOClient("http://localhost:4000");
+
+  UNSAFE_componentWillMount() {
+    
+    // axios.get(this.state.url,).then(response => {
+    //   console.log(response);
+    // })
+
+    // this.socket.on("update", update => {
+    //   console.log(update);
+    // });
+
+  }
+  
+  
 
   handleChange = event => {
     console.log(event.target.name);
@@ -32,6 +51,11 @@ export default class Pertandingan extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     console.log(this.state.match);
+    // const match = this.state.match;
+    // axios.post(this.state.url, match).then(response => {
+    //   this.socket.emit("update", response);
+    // })
+
   };
 
   render() {

@@ -1,9 +1,11 @@
 import React from "react";
 
-const KlasemenTable = () => {
+const KlasemenTable = ({ teams }) => {
+  console.log(teams);
   return (
     <div>
-      <table class="table table-bordered">
+      <center> <h2>Leaderboard</h2>  </center>
+      <table className="table table-bordered">
         <thead>
           <tr>
             <th scope="col">Rank</th>
@@ -18,39 +20,21 @@ const KlasemenTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td>1</td>
-            <td>Mark</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td>Jacob</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td>Larry the Bird</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-            <td>1</td>
-          </tr>
+          {teams.map((team, i) => {
+            return (
+              <tr key={team.id_team}>
+                <td> {i + 1} </td>
+                <td> {team.name} </td>
+                <td> {team.p} </td>
+                <td> {team.w} </td>
+                <td> {team.d} </td>
+                <td> {team.l} </td>
+                <td> {team.f} </td>
+                <td> {team.a} </td>
+                <td> {team.pts} </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>
