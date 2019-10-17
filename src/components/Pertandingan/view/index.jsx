@@ -11,16 +11,15 @@ const PertandinganView = ({ team, handleChange, handleSubmit }) => {
               name="teamA"
               onChange={handleChange}
             >
-              {team.map((tim, i) => {
+              { team.map((tim, i) => {
                 return (
-                  <option value={tim.id} key={i}>
-                    {tim.nama}
+                  <option value={tim.id_team} key={i}>
+                    {tim.nama_team}
                   </option>
                 );
               })}
             </select>
             <input
-
               placeholder="score"
               className="form-control mx-auto my-2 w-50"
               type="number"
@@ -37,8 +36,8 @@ const PertandinganView = ({ team, handleChange, handleSubmit }) => {
             >
               {team.map((tim, i) => {
                 return (
-                  <option value={tim.id} key={i}>
-                    {tim.nama}
+                  <option value={tim.id_team} key={i}>
+                    {tim.nama_team}
                   </option>
                 );
               })}

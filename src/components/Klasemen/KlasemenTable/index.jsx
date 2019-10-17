@@ -1,10 +1,11 @@
 import React from "react";
 
 const KlasemenTable = ({ teams }) => {
-  console.log(teams);
   return (
     <div>
-      <center> <h2>Leaderboard</h2>  </center>
+      <center>
+        <h2>Leaderboard</h2>
+      </center>
       <table className="table table-bordered">
         <thead>
           <tr>
@@ -24,13 +25,13 @@ const KlasemenTable = ({ teams }) => {
             return (
               <tr key={team.id_team}>
                 <td> {i + 1} </td>
-                <td> {team.name} </td>
-                <td> {team.p} </td>
-                <td> {team.w} </td>
-                <td> {team.d} </td>
-                <td> {team.l} </td>
-                <td> {team.f} </td>
-                <td> {team.a} </td>
+                <td> {team.nama_team} </td>
+                <td> {team.P} </td>
+                <td> {team.W} </td>
+                <td> {team.D} </td>
+                <td> {team.L} </td>
+                <td> {team.F} </td>
+                <td> {team.A} </td>
                 <td> {team.pts} </td>
               </tr>
             );
