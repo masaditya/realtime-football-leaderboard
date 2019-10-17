@@ -11,10 +11,10 @@ export default class Klasemen extends Component {
     };
   }
 
-  socket = socketIOClient("http://localhost:8089");
+  socket = socketIOClient("http://192.168.100.220:8089");
 
   async UNSAFE_componentWillMount() {
-    await axios.get("http://localhost:8089").then(response => {
+    await axios.get("http://192.168.100.220:8089").then(response => {
       this.setState({
         teams: response.data.data
       });

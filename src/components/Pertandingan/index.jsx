@@ -10,15 +10,17 @@ export default class Pertandingan extends Component {
     this.state = {
       team: [],
       match: {
-        teamA: null,
-        teamB: null,
+        teamA: 1,
+        teamB: 1,
         scoreA: 0,
         scoreB: 0
       },
-      url: "http://localhost:8089"
+      message: "",
+      status: "",
+      url: "http://192.168.100.220:8089"
     };
   }
-  socket = socketIOClient("http://localhost:8089");
+  socket = socketIOClient("http://192.168.100.220:8089");
 
   async UNSAFE_componentWillMount() {
     await axios.get(this.state.url).then(response => {
@@ -44,7 +46,19 @@ export default class Pertandingan extends Component {
     event.preventDefault();
     console.log(this.state.match);
     const match = this.state.match;
-    axios.post("http://localhost:8089/update", match).then(response => {
+    axios.post("http://192.168.100.220:8089/update", match).then(response => {
+      console.log(response.data.message);
+      this.setState({
+        message: response.data.message,
+        status: response.data.status
+      });
+      setTimeout(() => {
+        this.setState({
+          message: "",
+          status: ""
+        });
+      }, 2000);
+
       this.socket.emit("update", response);
     });
   };
@@ -56,6 +70,8 @@ export default class Pertandingan extends Component {
           team={this.state.team}
           handleChange={this.handleChange}
           handleSubmit={this.handleSubmit}
+          message={this.state.message}
+          status={this.state.status}
         />
       </div>
     );

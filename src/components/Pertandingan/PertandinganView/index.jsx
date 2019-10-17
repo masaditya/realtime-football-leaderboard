@@ -1,6 +1,12 @@
 import React from "react";
 
-const PertandinganView = ({ team, handleChange, handleSubmit }) => {
+const PertandinganView = ({
+  team,
+  handleChange,
+  handleSubmit,
+  message,
+  status
+}) => {
   return (
     <div className="container text-center">
       <form onSubmit={handleSubmit}>
@@ -11,7 +17,7 @@ const PertandinganView = ({ team, handleChange, handleSubmit }) => {
               name="teamA"
               onChange={handleChange}
             >
-              { team.map((tim, i) => {
+              {team.map((tim, i) => {
                 return (
                   <option value={tim.id_team} key={i}>
                     {tim.nama_team}
@@ -55,6 +61,11 @@ const PertandinganView = ({ team, handleChange, handleSubmit }) => {
           Submit
         </button>
       </form>
+      {message && (
+        <div className={`alert alert-${status}`}>
+          <strong>{message}</strong>
+        </div>
+      )}
     </div>
   );
 };
