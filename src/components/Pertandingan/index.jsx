@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PertandinganView from "./view";
+import PertandinganView from "./PertandinganView";
 import socketIOClient from "socket.io-client";
 import axios from "axios";
 
@@ -8,42 +8,34 @@ export default class Pertandingan extends Component {
     super();
 
     this.state = {
-      team: [
-        { id: 1, nama: "barcelona" },
-        { id: 2, nama: "juventus" },
-        { id: 3, nama: "chelsea" },
-        { id: 4, nama: "ajax" }
-      ],
+      team: [],
       match: {
         teamA: null,
         teamB: null,
         scoreA: 0,
         scoreB: 0
       },
-      url : ""
+      url: "http://localhost:8089"
     };
-    
   }
-  // socket = socketIOClient("http://localhost:4000");
+  socket = socketIOClient("http://localhost:8089");
 
-  UNSAFE_componentWillMount() {
-    
-    // axios.get(this.state.url,).then(response => {
-    //   console.log(response);
-    // })
-
-    // this.socket.on("update", update => {
-    //   console.log(update);
-    // });
-
+  async UNSAFE_componentWillMount() {
+    await axios.get(this.state.url).then(response => {
+      this.setState({
+        team: response.data.data
+      });
+    });
   }
-  
-  
 
   handleChange = event => {
     console.log(event.target.name);
     let match = this.state.match;
-    match[event.target.name] = event.target.value;
+    if (event.target.name === "scoreA" || event.target.name === "scoreB") {
+      match[event.target.name] = Number(event.target.value);
+    } else {
+      match[event.target.name] = event.target.value;
+    }
     console.log(match);
     this.setState({ match });
   };
@@ -51,11 +43,10 @@ export default class Pertandingan extends Component {
   handleSubmit = async event => {
     event.preventDefault();
     console.log(this.state.match);
-    // const match = this.state.match;
-    // axios.post(this.state.url, match).then(response => {
-    //   this.socket.emit("update", response);
-    // })
-
+    const match = this.state.match;
+    axios.post("http://localhost:8089/update", match).then(response => {
+      this.socket.emit("update", response);
+    });
   };
 
   render() {
