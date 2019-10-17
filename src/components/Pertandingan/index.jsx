@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import PertandinganView from "./view";
+import PertandinganView from "./PertandinganView";
 import socketIOClient from "socket.io-client";
 import axios from "axios";
 
@@ -26,15 +26,16 @@ export default class Pertandingan extends Component {
         team: response.data.data
       });
     });
-    // this.socket.on("updatetim", update => {
-    //   console.log(update);
-    // });
   }
 
   handleChange = event => {
     console.log(event.target.name);
     let match = this.state.match;
-    match[event.target.name] = event.target.value;
+    if (event.target.name === "scoreA" || event.target.name === "scoreB") {
+      match[event.target.name] = Number(event.target.value);
+    } else {
+      match[event.target.name] = event.target.value;
+    }
     console.log(match);
     this.setState({ match });
   };
