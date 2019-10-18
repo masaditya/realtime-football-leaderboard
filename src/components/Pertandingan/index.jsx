@@ -4,8 +4,8 @@ import socketIOClient from "socket.io-client";
 import axios from "axios";
 
 export default class Pertandingan extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       team: [],
@@ -16,14 +16,14 @@ export default class Pertandingan extends Component {
         scoreB: 0
       },
       message: "",
-      status: "",
-      url: "http://192.168.100.220:8089"
+      status: ""
     };
   }
-  socket = socketIOClient("http://192.168.100.220:8089");
+
+  socket = socketIOClient(this.props.ip_database);
 
   async UNSAFE_componentWillMount() {
-    await axios.get(this.state.url).then(response => {
+    await axios.get(this.props.ip_database).then(response => {
       this.setState({
         team: response.data.data
       });
@@ -33,11 +33,7 @@ export default class Pertandingan extends Component {
   handleChange = event => {
     console.log(event.target.name);
     let match = this.state.match;
-    if (event.target.name === "scoreA" || event.target.name === "scoreB") {
-      match[event.target.name] = Number(event.target.value);
-    } else {
-      match[event.target.name] = event.target.value;
-    }
+    match[event.target.name] = Number(event.target.value);
     console.log(match);
     this.setState({ match });
   };
@@ -46,7 +42,7 @@ export default class Pertandingan extends Component {
     event.preventDefault();
     console.log(this.state.match);
     const match = this.state.match;
-    axios.post("http://192.168.100.220:8089/update", match).then(response => {
+    axios.post(`${this.props.ip_database}/update`, match).then(response => {
       console.log(response.data.message);
       this.setState({
         message: response.data.message,
