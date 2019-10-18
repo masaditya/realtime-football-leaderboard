@@ -4,17 +4,17 @@ import socketIOClient from "socket.io-client";
 import axios from "axios";
 
 export default class Klasemen extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.state = {
       teams: []
     };
   }
 
-  socket = socketIOClient("http://localhost:8089");
+  socket = socketIOClient(this.props.ip_database);
 
   async UNSAFE_componentWillMount() {
-    await axios.get("http://localhost:8089").then(response => {
+    await axios.get(this.props.ip_database).then(response => {
       this.setState({
         teams: response.data.data
       });
